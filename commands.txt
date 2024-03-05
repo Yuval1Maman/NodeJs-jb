@@ -10,3 +10,15 @@ add git repo:
 git remote add origin https://github.com/Yuval1Maman/NodeJs-jb.git
 git branch -M main
 git push -u origin main
+
+docker:
+docker run --name mysql -d -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -e MYSQL_DATABASE=cryptoapp -e MYSQL_TCP_PORT=3306 -p 3310:3306 mysql:latest
+
+mysql>exec>mysql -u root cryptoapp:
+to control the database
+
+in sql always use ? when entering values to table to avoid sql injection
+
+vscode extentions: prettier, material icon theme, code spell checker, typescript & javascript nightly
+
+to run in a diff env{}

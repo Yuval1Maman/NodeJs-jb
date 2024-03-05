@@ -4,6 +4,7 @@ import { DTO } from "./dto";
 import { Model } from "./model";
 
 class Mysql implements Model{
+
     async add(userSymbol: DTO): Promise<DTO> {
         const {userId, symbol} = userSymbol;
         const result:OkPacketParams = await query(`
@@ -18,6 +19,16 @@ class Mysql implements Model{
         };
         return newUserSymbol;
     }
+
+    async getForUser(userId: number): Promise<DTO[]> {
+        const userSymbols: DTO[] = await query(`
+            SELECT id, user_id, symbol
+            FROM users_symbols
+            WHERE user_id = ?`, [userId])
+        return userSymbols;
+    }
+
+    
 }
 
 const mysql = new Mysql();

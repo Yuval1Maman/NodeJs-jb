@@ -22,3 +22,6 @@ in sql always use ? when entering values to table to avoid sql injection
 vscode extentions: prettier, material icon theme, code spell checker, typescript & javascript nightly
 
 to run in a diff env{}
+
+mongo setup:
+docker run --name mongodb -e MONGO_INITDB_DATABASE=cryptoapp -d -p 27017:27017 mongo:latest

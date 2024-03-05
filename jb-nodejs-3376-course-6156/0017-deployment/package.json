@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "mysql2": "^3.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "start": "node ./dist/connect",
+    "start:dev": "ts-node src/connect",
+    "build": "tsc && cp -r ./config ./dist/config"
+  }
+}

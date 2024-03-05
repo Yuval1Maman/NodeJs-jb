@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "config": "^3.3.11",
+    "mongoose": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/config": "^3.3.3",
+    "@types/mongoose": "^5.11.97"
+  }
+}

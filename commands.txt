@@ -1,0 +1,7 @@
+nodemon --exec ts-node [file]
+
+npx to execute when something is not working
+
+add to package.json in scripts, a line you want to be executed each time you call its name,
+see cryptoApp for more, in there when we call "npm run start" the line works.
+in production we wont run this, its slower, we will compile on our own.

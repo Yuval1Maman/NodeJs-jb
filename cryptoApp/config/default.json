@@ -8,5 +8,10 @@
         "password": "",
         "database": "cryptoapp",
         "port": 3310
+    },
+    "mongo":{
+        "host": "localhost",
+        "database": "cryptoapp",
+        "port": 27017
     }
 }

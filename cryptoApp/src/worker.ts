@@ -3,9 +3,12 @@ import util from 'util';
 import config from 'config';
 import mongoose from 'mongoose';
 import getModel from './models/user-symbol/factory';
-import getSynbolValueModel from './models/symbol-value/factory';
+import getSymbolValueModel from './models/symbol-value/factory';
 import axios from 'axios';
 import cheerio  from 'cheerio';
+import { io } from 'socket.io-client'
+
+const socket = io(`ws://${config.get<string>('worker.io.host')}:${config.get<string>('worker.io.port')}`)
 
 //mysql
 const connection = mysql.createConnection(config.get('mysql'));
@@ -26,11 +29,18 @@ async function scrape(symbol:string){
     const $ = cheerio.load(html);
     const value = Number($('.YMlKec.fxKbKc').text().replace(',',''));
     console.log(value);
-    await getSynbolValueModel().add({
+    
+    await getSymbolValueModel().add({
         symbol,
         value,
         when: new Date()
     })
+
+    socket.emit('update from worker', {
+        symbol,
+        value
+    })
+
     return;
 }
 
@@ -50,9 +60,9 @@ async function work(){
 }
 
 (async () => {
-    await Promise.all([
-        connect(),
-        mongoose.connect(`mongodb://${host}:${port}/${database}`)
-    ])
+    // await Promise.all([
+    //     connect(),
+    //     mongoose.connect(`mongodb://${host}:${port}/${database}`)
+    // ])
     work();
 })();

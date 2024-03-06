@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { config } from 'config';
+import config from 'config';
 
 const host = config.get<string>('mongo.host');
 const port = config.get<string>('mongo.port');

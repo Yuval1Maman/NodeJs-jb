@@ -25,3 +25,7 @@ to run in a diff env{}
 
 mongo setup:
 docker run --name mongodb -e MONGO_INITDB_DATABASE=cryptoapp -d -p 27017:27017 mongo:latest
+
+docker:
+ docker run --name cryptoapp-worker -e NODE_ENV=docker -d yuvalm/cryptoapp-worker:1.0A
+ docker build . -f Dockerfile.worker -t yuvalm/cryptoapp-worker:1.0

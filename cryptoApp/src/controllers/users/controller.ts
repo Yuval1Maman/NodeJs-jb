@@ -6,7 +6,7 @@ import config from 'config';
 
 export async function dashboard (req: Request,res: Response,next: NextFunction) {
     try{
-        const userSymbols = await getModel().getForUser(1);
+        const userSymbols = await getModel().getForUser(req.user.id);
         const symbolValues = await Promise.all(userSymbols.map(symbol => getSymbolValueModel().getLatest(symbol.symbol)))
         res.render('users/dashboard', {
             userSymbols,
@@ -23,7 +23,7 @@ export async function addSymbol (req: Request,res: Response,next: NextFunction){
     try{
         const userSymbolModel = getModel();
         const inputUserSymbol = {
-            ...req.body, userId: 1
+            ...req.body, userId: req.user.id
         }
         const newUserSymbol = await userSymbolModel.add(inputUserSymbol);
         res.redirect('/users/dashboard');
@@ -32,4 +32,10 @@ export async function addSymbol (req: Request,res: Response,next: NextFunction){
     catch(err){
         next(err)
     }
+}
+
+export function logout(req: Request,res: Response,next: NextFunction){
+    req.logout(() => {
+        res.redirect('/')
+    })
 }

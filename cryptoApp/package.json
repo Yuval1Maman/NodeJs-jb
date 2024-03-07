@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "ts-node src/initdb.ts && nodemon --exec ts-node src/app.ts",
+    "start": "node ./dist/initdb && node ./dist/app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "worker:dev": "ts-node src/worker.ts",
     "worker": "node ./dist/worker",
     "io:dev": "ts-node src/io.ts",
-    "io" : "node ./dist/io"
+    "io" : "node ./dist/io",
+    "build": "tsc && cp -r ./config ./dist/config && cp -r ./src/views ./dist/views"
   },
   "keywords": [],
   "author": "",

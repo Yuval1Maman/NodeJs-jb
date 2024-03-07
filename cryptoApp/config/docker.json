@@ -1,4 +1,7 @@
 {
+    "app": {
+        "port": 3000
+    },
     "io": {
         "port": 3000
     },
@@ -7,5 +10,10 @@
     },
     "mongo": {
         "host":"host.docker.internal"
+    },
+    "worker":{
+        "io":{
+            "host": "host.docker.internal"
+        }
     }
 }
